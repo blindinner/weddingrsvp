@@ -11,7 +11,6 @@ interface FormData {
   phone: string;
   status: Status | null;
   actualGuestCount: number;
-  message: string;
 }
 
 export default function RSVPPage() {
@@ -21,7 +20,6 @@ export default function RSVPPage() {
     phone: '',
     status: null,
     actualGuestCount: 1,
-    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -55,7 +53,7 @@ export default function RSVPPage() {
           status: formData.status,
           actualGuestCount: formData.status === 'attending' ? formData.actualGuestCount : null,
           dietary: null,
-          message: formData.message.trim() || null,
+          message: null,
         }),
       });
 
@@ -82,7 +80,6 @@ export default function RSVPPage() {
       phone: '',
       status: null,
       actualGuestCount: 1,
-      message: '',
     });
   };
 
@@ -203,19 +200,6 @@ export default function RSVPPage() {
               )}
 
 
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-[#3D3D3D] mb-2">
-                  ברכה לזוג
-                </label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="ברכה לחתן והכלה (אופציונלי)"
-                  rows={3}
-                  className="w-full resize-none"
-                />
-              </div>
 
               {/* Error message */}
               {error && (
