@@ -513,7 +513,6 @@ export default function AdminDashboard() {
                         <th className="px-4 py-3 font-medium text-[#6B6B6B]">Phone</th>
                         <th className="px-4 py-3 font-medium text-[#6B6B6B]">Status</th>
                         <th className="px-4 py-3 font-medium text-[#6B6B6B]">Actual</th>
-                        <th className="px-4 py-3 font-medium text-[#6B6B6B]">Dietary</th>
                         <th className="px-4 py-3 font-medium text-[#6B6B6B]">Message</th>
                         <th className="px-4 py-3 font-medium text-[#6B6B6B]">Submitted</th>
                       </tr>
@@ -531,7 +530,6 @@ export default function AdminDashboard() {
                           <td className="px-4 py-3 font-mono text-xs">{guest.phone}</td>
                           <td className="px-4 py-3">{getStatusPill(guest.status)}</td>
                           <td className="px-4 py-3">{guest.actual_guest_count || '-'}</td>
-                          <td className="px-4 py-3">{getDietaryLabel(guest.dietary)}</td>
                           <td className="px-4 py-3 max-w-[200px] truncate">
                             {guest.message || '-'}
                           </td>
