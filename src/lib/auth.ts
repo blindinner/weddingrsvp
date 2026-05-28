@@ -4,20 +4,17 @@ import { createHmac } from 'crypto';
 const COOKIE_NAME = 'admin_session';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-function getAdminSecret(): string {
-  const secret = process.env.ADMIN_SECRET;
-  if (!secret) {
-    throw new Error('ADMIN_SECRET environment variable is not set');
-  }
-  return secret;
-}
-
 function getAdminPassword(): string {
   const password = process.env.ADMIN_PASSWORD;
   if (!password) {
     throw new Error('ADMIN_PASSWORD environment variable is not set');
   }
   return password;
+}
+
+// Use password as the secret for signing (simple approach for wedding app)
+function getAdminSecret(): string {
+  return getAdminPassword();
 }
 
 export function signValue(value: string): string {

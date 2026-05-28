@@ -39,10 +39,10 @@ export async function middleware(request: NextRequest) {
   // Only protect /admin routes (except /admin/login)
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
     const sessionCookie = request.cookies.get('admin_session');
-    const secret = process.env.ADMIN_SECRET;
+    const secret = process.env.ADMIN_PASSWORD;
 
     if (!secret) {
-      console.error('ADMIN_SECRET not configured');
+      console.error('ADMIN_PASSWORD not configured');
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
 
@@ -59,7 +59,7 @@ export async function middleware(request: NextRequest) {
   // Protect /api/admin routes (except login)
   if (pathname.startsWith('/api/admin') && !pathname.includes('/login')) {
     const sessionCookie = request.cookies.get('admin_session');
-    const secret = process.env.ADMIN_SECRET;
+    const secret = process.env.ADMIN_PASSWORD;
 
     if (!secret || !sessionCookie) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
