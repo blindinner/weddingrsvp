@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #FAF7F2;
+  --color-sage: #8B9A7A;
+  --color-sage-dark: #6B7A5A;
+  --color-text: #3D3D3D;
+  --color-text-light: #6B6B6B;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--color-cream);
+  --color-sage: var(--color-sage);
+  --color-sage-dark: var(--color-sage-dark);
+  --color-text: var(--color-text);
+  --color-text-light: var(--color-text-light);
+  --font-heebo: var(--font-heebo);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-text);
+  font-family: var(--font-heebo), sans-serif;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage);
+  border-radius: 4px;
+}
+
+/* Form input styling */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-sage);
+  box-shadow: 0 0 0 3px rgba(139, 154, 122, 0.1);
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E5E5E5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+input[type="radio"]:checked {
+  border-color: var(--color-sage);
+  background: radial-gradient(circle, var(--color-sage) 40%, transparent 40%);
+}
+
+input[type="radio"]:hover {
+  border-color: var(--color-sage);
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--color-sage);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-sage-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Admin styles - LTR */
+.admin-layout {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Status pills */
+.status-pill {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-attending {
+  background: rgba(139, 154, 122, 0.2);
+  color: #5A6B4A;
+}
+
+.status-not-attending {
+  background: rgba(180, 100, 100, 0.15);
+  color: #8B5A5A;
+}
+
+.status-maybe {
+  background: rgba(180, 160, 100, 0.2);
+  color: #8B7A4A;
+}
+
+.status-pending {
+  background: rgba(150, 150, 150, 0.15);
+  color: #6B6B6B;
 }
