@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 type Status = 'attending' | 'not_attending';
-type Dietary = 'regular' | 'vegetarian' | 'vegan' | 'gluten_free' | 'other';
 
 interface FormData {
   firstName: string;
@@ -12,7 +11,6 @@ interface FormData {
   phone: string;
   status: Status | null;
   actualGuestCount: number;
-  dietary: Dietary;
   message: string;
 }
 
@@ -23,7 +21,6 @@ export default function RSVPPage() {
     phone: '',
     status: null,
     actualGuestCount: 1,
-    dietary: 'regular',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,7 +54,7 @@ export default function RSVPPage() {
           phone: formData.phone.trim(),
           status: formData.status,
           actualGuestCount: formData.status === 'attending' ? formData.actualGuestCount : null,
-          dietary: formData.status === 'attending' ? formData.dietary : null,
+          dietary: null,
           message: formData.message.trim() || null,
         }),
       });
@@ -85,7 +82,6 @@ export default function RSVPPage() {
       phone: '',
       status: null,
       actualGuestCount: 1,
-      dietary: 'regular',
       message: '',
     });
   };
@@ -206,25 +202,6 @@ export default function RSVPPage() {
                 </div>
               )}
 
-              {/* Dietary - only visible if attending */}
-              {formData.status === 'attending' && (
-                <div>
-                  <label className="block text-sm font-medium text-[#3D3D3D] mb-2">
-                    תזונה מיוחדת
-                  </label>
-                  <select
-                    value={formData.dietary}
-                    onChange={(e) => setFormData({ ...formData, dietary: e.target.value as Dietary })}
-                    className="w-full"
-                  >
-                    <option value="regular">רגיל</option>
-                    <option value="vegetarian">צמחוני</option>
-                    <option value="vegan">טבעוני</option>
-                    <option value="gluten_free">ללא גלוטן</option>
-                    <option value="other">אחר</option>
-                  </select>
-                </div>
-              )}
 
               {/* Message */}
               <div>
